@@ -12,6 +12,7 @@ alias gpf="git push --force-with-lease"
 alias gp="git push"
 alias gco="git checkout"
 alias tf="terraform"
+alias py="python3"
 
 function cfile
     cat $argv | pbcopy
