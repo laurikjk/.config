@@ -9,5 +9,6 @@ return {
 		{ "<leader>f", "<cmd>Telescope find_files<cr>" },
 		{ "<leader> ", "<cmd>Telescope find_files<cr>" },
 		{ "<leader>g", "<cmd>Telescope live_grep<cr>" },
+    { "<leader>r", "<cmd>Telescope oldfiles<cr>" },
 	},
 }
