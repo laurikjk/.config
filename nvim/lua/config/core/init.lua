@@ -19,3 +19,7 @@ vim.opt.expandtab = true        -- Use spaces instead of tabs
 vim.opt.smartindent = true      -- Smart auto-indenting for new lines
 vim.opt.autoindent = true       -- Copy indent from the current line when starting a new line
 
+-- Search
+vim.opt.ignorecase = true -- Default to case insensitive search
+vim.opt.smartcase = true  -- If uppercase letter in search then use case sensitive search
+
