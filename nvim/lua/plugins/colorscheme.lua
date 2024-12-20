@@ -1,10 +1,10 @@
 return {
-    "rebelot/kanagawa.nvim",
-    name = "kanagawa",
+    "shaunsingh/nord.nvim",
+    name = "nord",
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme kanagawa")
+        vim.cmd("colorscheme nord")
     end,
 }
 
