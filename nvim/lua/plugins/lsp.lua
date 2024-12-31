@@ -32,6 +32,10 @@ return {
 
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
+        init_options = {
+          -- Default to C++20 when no compile commands
+          fallbackFlags = { "-std=c++20" }, 
+        },
 			})
 
 			lspconfig.solargraph.setup({
