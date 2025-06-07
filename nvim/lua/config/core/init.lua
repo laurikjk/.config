@@ -23,3 +23,33 @@ vim.opt.autoindent = true       -- Copy indent from the current line when starti
 vim.opt.ignorecase = true -- Default to case insensitive search
 vim.opt.smartcase = true  -- If uppercase letter in search then use case sensitive search
 
+-- Keymaps
+
+-- Open the diagnostic float
+vim.keymap.set("n", "<leader>co", function()
+  vim.diagnostic.open_float()
+end, { desc = "Open LSP diagnostics" })
+
+-- Copy all diagnostics on the current line to the system clipboard
+vim.keymap.set("n", "<leader>cc", function()
+  local bufnr = 0
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local diags = vim.diagnostic.get(bufnr, { lnum = row })
+
+  if #diags == 0 then
+    print("No diagnostics on this line")
+    return
+  end
+
+  local msgs = {}
+  for _, d in ipairs(diags) do
+    table.insert(msgs, d.message)
+  end
+
+  local full_text = table.concat(msgs, "\n")
+
+  vim.fn.setreg('+', full_text)
+
+  print("Copied diagnostics:\n" .. full_text)
+end, { desc = "Copy all diagnostics on this line to system clipboard" })
+

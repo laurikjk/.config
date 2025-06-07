@@ -5,6 +5,8 @@ end
 set -Ux PATH $HOME/.cargo/bin $PATH
 
 # Helpful stuff
+alias vim="nvim"
+alias vi="nvim"
 alias c="clear"
 alias l="ls"
 alias g="git"
@@ -42,3 +44,9 @@ if test -f /opt/homebrew/anaconda3/bin/conda
     eval /opt/homebrew/anaconda3/bin/conda "shell.fish" hook $argv | source
 end
 # <<< conda initialize <<<
+
+source /Users/l/.docker/init-fish.sh || true # Added by Docker Desktop
+export VCPKG_ROOT="$HOME/vcpkg"
+
+export AIDER_CHAT_LANGUAGE=en
+

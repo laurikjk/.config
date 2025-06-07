@@ -64,6 +64,11 @@ return {
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+          vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+
+          vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Signature help" })
+          vim.keymap.set("n", "<leader>d", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show type/doc" })
+
 					if client.server_capabilities.inlayHintProvider then
 						vim.keymap.set("n", "<space>h", function()
 							local current_setting = vim.lsp.inlay_hint.is_enabled(bufnr)
