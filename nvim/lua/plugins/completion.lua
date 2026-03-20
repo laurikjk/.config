@@ -28,6 +28,7 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			sources = cmp.config.sources({
+        { name = "copilot", group_index = 1, priority = 100 },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },

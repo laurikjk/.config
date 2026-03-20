@@ -48,5 +48,6 @@ end
 source /Users/l/.docker/init-fish.sh || true # Added by Docker Desktop
 export VCPKG_ROOT="$HOME/vcpkg"
 
-export AIDER_CHAT_LANGUAGE=en
+conda deactivate
+
 

@@ -13,68 +13,36 @@ return {
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
 			})
-
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
-
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
         init_options = {
           -- Default to C++20 when no compile commands
-          fallbackFlags = { "-std=c++20" }, 
+          fallbackFlags = { "-std=c++20" },
         },
 			})
-
-			lspconfig.solargraph.setup({
-				capabilities = capabilities,
-			})
-
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 			})
 
-			lspconfig.rust_analyzer.setup({})
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+			})
 
       lspconfig.glsl_analyzer.setup({
 				capabilities = capabilities,
 			})
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-					local client = vim.lsp.get_client_by_id(ev.data.client_id)
-					local bufnr = ev.buf
-					local opts = { buffer = bufnr }
-
+					local opts = { buffer = ev.buf }
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
-
-          vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Signature help" })
-          vim.keymap.set("n", "<leader>d", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show type/doc" })
-
-					if client.server_capabilities.inlayHintProvider then
-						vim.keymap.set("n", "<space>h", function()
-							local current_setting = vim.lsp.inlay_hint.is_enabled(bufnr)
-							vim.lsp.inlay_hint.enable(bufnr, not current_setting)
-						end)
-					end
 				end,
 			})
 		end,
