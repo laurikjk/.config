@@ -50,4 +50,5 @@ export VCPKG_ROOT="$HOME/vcpkg"
 
 conda deactivate
 
+alias dnvpn='/Users/l/Projects/iris/nostr-vpn/target/debug/nvpn'
 
