@@ -38,17 +38,19 @@ end
 # Generated for envman. Do not edit.
 test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/anaconda3/bin/conda
-    eval /opt/homebrew/anaconda3/bin/conda "shell.fish" hook $argv | source
+for var in CONDA_DEFAULT_ENV CONDA_EXE CONDA_PREFIX CONDA_PROMPT_MODIFIER CONDA_PYTHON_EXE CONDA_SHLVL _CE_CONDA _CE_M CC CXX CFLAGS CPPFLAGS LDFLAGS AR AS LD NM RANLIB STRIP OBJDUMP OBJCOPY
+    set -e $var
 end
-# <<< conda initialize <<<
+
+set -l clean_path
+for entry in $PATH
+    if not string match -qr '^/opt/homebrew/anaconda3($|/)' -- $entry
+        set clean_path $clean_path $entry
+    end
+end
+set -gx PATH $clean_path
 
 source /Users/l/.docker/init-fish.sh || true # Added by Docker Desktop
 export VCPKG_ROOT="$HOME/vcpkg"
 
-conda deactivate
-
 alias dnvpn='/Users/l/Projects/iris/nostr-vpn/target/debug/nvpn'
-
