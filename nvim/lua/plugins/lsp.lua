@@ -2,37 +2,45 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
+			"mason-org/mason-lspconfig.nvim",
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
-			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 			local capabilities = cmp_nvim_lsp.default_capabilities()
 
-			lspconfig.lua_ls.setup({
+			local function enable_server(name, config)
+				vim.lsp.config(name, config)
+				vim.lsp.enable(name)
+			end
+
+			enable_server("lua_ls", {
 				capabilities = capabilities,
 			})
-			lspconfig.ts_ls.setup({
+			enable_server("ts_ls", {
 				capabilities = capabilities,
 			})
-			lspconfig.clangd.setup({
+			enable_server("svelte", {
 				capabilities = capabilities,
-        init_options = {
-          -- Default to C++20 when no compile commands
-          fallbackFlags = { "-std=c++20" },
-        },
 			})
-			lspconfig.pyright.setup({
+			enable_server("clangd", {
+				capabilities = capabilities,
+				init_options = {
+					-- Default to C++20 when no compile commands
+					fallbackFlags = { "-std=c++20" },
+				},
+			})
+			enable_server("pyright", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.rust_analyzer.setup({
+			enable_server("rust_analyzer", {
 				capabilities = capabilities,
 			})
 
-      lspconfig.glsl_analyzer.setup({
+			enable_server("glsl_analyzer", {
 				capabilities = capabilities,
 			})
 			vim.api.nvim_create_autocmd("LspAttach", {

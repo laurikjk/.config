@@ -7,7 +7,7 @@ local function prettier()
       return
     end
 
-    local filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
+    local filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte' }
 
     local filetypesetups = {}
     for _, filetype in ipairs(filetypes) do
@@ -29,7 +29,7 @@ local function prettier()
     vim.api.nvim_exec([[
       augroup FormatAutogroup
         autocmd!
-        autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx FormatWrite
+        autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.svelte FormatWrite
       augroup END
     ]], true)
 end
@@ -40,4 +40,3 @@ return {
     prettier()
   end
 }
-

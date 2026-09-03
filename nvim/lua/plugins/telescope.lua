@@ -1,14 +1,14 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.5",
+	-- Pinned past 0.1.8 because released tags still use the removed ft_to_lang API.
+	commit = "427b576c16792edad01a92b89721d923c19ad60f",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	keys = {
-		{ "<leader>f", "<cmd>Telescope find_files<cr>" },
-		{ "<leader> ", "<cmd>Telescope find_files<cr>" },
-		{ "<leader>g", "<cmd>Telescope live_grep<cr>" },
-    { "<leader>r", "<cmd>Telescope oldfiles<cr>" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>" },
 	},
 }
